@@ -6,7 +6,8 @@ const constructor = require('./bitmap-constructor.js');
 
 module.exports = exports = {};
 
-exports.blkToWhite = function(data) {
+exports.blkToWhite = function(err, data) {
+  if(err) return err;
   for (let i = 0; i < data.colorTable.length; i++) {
     if (data.colorTable[i] === 0) {
       data.colorTable[i] = 255;
@@ -15,7 +16,8 @@ exports.blkToWhite = function(data) {
   return data;
 };
 
-exports.toLateEighties = function(data) {
+exports.toLateEighties = function(err, data) {
+  if(err) return err;   
   for (let i = 0; i < data.colorTable.length; i++) {
     if (i % 3 === 0) {
       data.colorTable[i] = i - 102;
@@ -30,7 +32,8 @@ exports.invert = function(err, data) {
   return data;
 };
 
-exports.diagonal = function(data) {
+exports.diagonal = function(err, data) {
+  if(err) return err;
   for (let i = 0; i < data.pixels.length; i++) {
     data.pixels[i * 2] = 1;
     data.pixels[i * 3] = 0;
@@ -42,7 +45,8 @@ exports.diagonal = function(data) {
   return data;
 };
 
-exports.redAndBlack = function(data) {
+exports.redAndBlack = function(err, data) {
+  if(err) return err;
   for (let i = 0; i < data.pixels.length/2; i++) {
     data.pixels[i] = data.pixels[i] * 3;
   }
